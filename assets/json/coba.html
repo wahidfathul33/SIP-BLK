@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
+<body>
+<select class="e241" id="e24">
+		<option class="level-1" value="freight-forwarding">&nbsp;&nbsp;&nbsp;Freight Forwarding</option>
+	<option class="level-1" value="kurir">&nbsp;&nbsp;&nbsp;Kurir</option>
+	<option class="level-1" value="purchasing-staff">&nbsp;&nbsp;&nbsp;Purchasing Staff</option>
+	<option class="level-1" value="warehouse">&nbsp;&nbsp;&nbsp;Warehouse</option>
+</select>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+//     let dropdown = $('#e24');
+
+// dropdown.empty();
+
+// dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+// dropdown.prop('selectedIndex', 0);
+
+// const url = 'https://api.myjson.com/bins/1dh63x';
+
+// // Populate dropdown with list of provinces
+// $.getJSON(url, function (data) {
+//   $.each(data, function (key, entry) {
+//     dropdown.append($('<option></option>').attr('id', entry.id).attr('value', entry.value).text(entry.text));
+//   })
+// });
+
+$(document).ready(function () {
+$(".e241").select2();
+});
+</script>
+</html>
+

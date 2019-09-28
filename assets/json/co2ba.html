@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Select2 - harviacode.com</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div style="width: 300px; padding: 15px">
+            <div class="form-group">
+                <label>Kota Kelahiran</label>
+                <select id="kota" name="kota" class="form-control e24">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kota Kelahiran</label>
+                <select id="kota" name="kota" class="form-control">
+                    <option value=""></option>
+                    <option value="Jakarta">Jakarta & </option>
+                    <option value="Bogor">Bogor</option>
+                    <option value="Depok">Depok</option>
+                    <option value="Tangerang">Tangerang</option>
+                    <option value="Bekasi">Bekasi</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Semarang">Semarang</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                    <option value="Surabaya">Surabaya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kota Favorit</label>
+                <select id="kota2" name="kota2[]" class="form-control" multiple="multiple">
+                    <option value=""></option>
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Bogor">Bogor</option>
+                    <option value="Depok">Depok</option>
+                    <option value="Tangerang">Tangerang</option>
+                    <option value="Bekasi">Bekasi</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Semarang">Semarang</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                    <option value="Surabaya">Surabaya</option>
+                </select>
+            </div>
+
+        </div>
+        <script>
+                let dropdown = $('.e24');
+
+dropdown.empty();
+
+dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+dropdown.prop('selectedIndex', 0);
+
+const url = 'https://api.myjson.com/bins/1dh63x';
+
+// Populate dropdown with list of provinces
+$.getJSON(url, function (data) {
+  $.each(data, function (key, entry) {
+    dropdown.append($('<option></option>').attr('id', entry.id).attr('value', entry.value).text(entry.text));
+  })
+});
+            $(document).ready(function () {
+                $("#kota").select2({
+                    placeholder: "Please Select"
+                });
+                $("#kota2").select2({
+                    placeholder: "Please Select"
+                });
+            });
+        </script>
+    </body>
+</html>
