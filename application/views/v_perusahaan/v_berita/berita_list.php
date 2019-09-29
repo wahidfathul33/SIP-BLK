@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tabel Berita<span class="float-right"><a href="<?php echo base_url().'c_perusahaan/loker_posted';?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a></span></h4>
+                <h4 class="card-title">Tabel Berita<span class="float-right"><a href="<?php echo base_url().'c_perusahaan/loker_posted/0';?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a></span></h4>
                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                 <div class="table-responsive m-t-40">
                     <div class="row">

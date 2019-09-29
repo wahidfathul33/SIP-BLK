@@ -14,7 +14,7 @@
                                         <td>No.</td>
                                         <td>Judul Loker</td>
                                         <td>Posisi</td>
-                                        <td>Tanggal Tutup</td>
+                                        <td>Status Buka</td>
                                         <td>Status Publish</td>
                                         <td>Aksi</td>
                                     </tr>

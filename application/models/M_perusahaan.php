@@ -42,9 +42,21 @@ class M_perusahaan extends CI_Model
     }
     // ============================================================================
 
-    //tabel lamaran
+    //tabel pelamar
 
-    
+    function get_pelamar($id, $status)
+    {
+        $this->db->join('member', 'member.id_member = pelamar.id_member', 'left');
+        $this->db->where('id_lowongan', $id);
+        $this->db->where('status', $status);
+        return $this->db->get('pelamar')->result();
+    }
+
+    function update_status_pelamar($id, $data)
+    {
+        $this->db->where('id_pelamar', $id);
+        $this->db->update('pelamar', $data);
+    }
     // ============================================================================
 
     //tabel panggilan

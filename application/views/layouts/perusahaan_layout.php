@@ -205,6 +205,8 @@
                         </li>
                         <li class="menu "> <a class="waves-effect waves-dark" href="<?php echo base_url();?>c_perusahaan/loker" aria-expanded="false"><i class="fa fa-file-text-o"></i><span class="hide-menu">Lowongan</span></a>
                         </li>
+                        <li class="menu "> <a class="waves-effect waves-dark" href="<?php echo base_url();?>c_perusahaan/loker_posted/1" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">Seleksi Pelamar</span></a>
+                        </li>
                         <li class="menu "> <a class="waves-effect waves-dark" href="<?php echo base_url();?>c_perusahaan/ubah_pwd" aria-expanded="false"><i class="fa fa-gear"></i><span class="hide-menu">Setting</span></a>
                         </li>
                         <li class="menu "> <a class="waves-effect waves-dark" href="<?php echo base_url();?>c_login/logout" aria-expanded="false"><i class="fa fa-power-off"></i><span class="hide-menu">Logout</span></a>

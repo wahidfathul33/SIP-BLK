@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Pilih Lowongan Kerja</h4>
-                <h6 class="card-subtitle">Pilih lowongan yang untuk dibuat berita panggilan</h6>
+                <!-- <h6 class="card-subtitle">Pilih lowongan yang untuk dibuat berita panggilan</h6> -->
                 <div class="table-responsive m-t-40">
                     <div class="row">
                         <div class="col-12"> 
@@ -13,6 +13,7 @@
                                         <td>No.</td>
                                         <td>Judul Loker</td>
                                         <td>Posisi</td>
+                                        <td>Status Buka</td>
                                         <td>Total Pelamar</td>
                                         <td>Aksi</td>
                                     </tr>
@@ -20,20 +21,28 @@
                                 <tbody>
                                     <?php
                                     $start =0;
-                                    foreach ($loker as $row)
-                                    {?>
+                                    foreach ($loker as $row){ ?>
                                     <tr>
-                                        
                                         <td width="80px"><?php echo ++$start ?></td>
                                         <td><a class="loker-detail" data-toggle="modal" data-target="#show_loker" relid="<?php echo $row->id_lowongan;?>" data-toggle="tooltip" data-placement="top" title="Lihat detail lowongan"><?php echo $row->judul ?></a></td>
                                         <td><?php echo $row->posisi ?></td>
+                                        <?php if(date('Y-m-d') > $row->tgl_tutup){?>
+                                        <td>Tutup</td>
+                                        <?php }else{?>
+                                        <td>Buka</td>
+                                        <?php }?>
                                         <td><?php echo $row->tot_pelamar ?></td>
-
+                                        <?php if($q==1){?>
+                                        <td style="text-align:center" width="200px">
+                                            <a href="<?php echo base_url().'c_perusahaan/pelamar_list/0/'.$row->id_lowongan;?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Pilih Lowongan"><i class="fa fa-eye"></i> Lihat pelamar</a>
+                                        </td>
+                                        <?php }else{ ?>
                                         <td style="text-align:center" width="200px">
                                             <a href="<?php echo base_url().'c_perusahaan/berita_add/'.$row->id_lowongan;?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Pilih Lowongan"><i class=""></i> Pilih</a>
                                         </td>
+                                        <?php } ?>
                                     </tr>
-                                    <?php }?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

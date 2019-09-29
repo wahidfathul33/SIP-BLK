@@ -54,6 +54,11 @@ class C_perusahaan extends CI_Controller
             redirect(site_url('c_perusahaan/profil_edit'));
         }
     }
+
+    // =============================================================================
+    // menu profil start
+    // =============================================================================
+
     public function profil()
     {
         $this->cek_data_profil();
@@ -427,6 +432,12 @@ class C_perusahaan extends CI_Controller
         }
     }
 
+    // =============================================================================
+    // menu profil end
+    // =============================================================================
+    // =============================================================================
+    // menu berita start
+    // =============================================================================
     public function berita()
     {
         // /$this->cek_data_profil();
@@ -455,11 +466,12 @@ class C_perusahaan extends CI_Controller
         exit();
     }
 
-    public function loker_posted()
+    public function loker_posted($q)
     {
         $this->cek_data_profil();
 
         $data['loker'] = $this->mp->get_posted_loker();
+        $data['q'] = $q;
 
         if ($data['loker']) 
         {            
@@ -470,7 +482,7 @@ class C_perusahaan extends CI_Controller
             $this->template->set('breadcrumb2', '<li class="breadcrumb-item active">Tambah Berita</li>');
             $this->template->load('perusahaan_layout', 'contents' , 'v_perusahaan/v_loker/loker_posted', $data);
         }else{
-            $this->session->set_flashdata('notif', '<div class="alert alert-danger">Belum ada lowongan yang terposting!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
+            $this->session->set_flashdata('notif', '<div class="alert alert-danger">Belum ada lowongan yang terpublish!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
             redirect('c_perusahaan/berita','refresh');
         }
     }
@@ -634,6 +646,13 @@ class C_perusahaan extends CI_Controller
             redirect('c_perusahaan/berita','refresh');
         }
     }
+
+    // =============================================================================
+    // menu berita end
+    // =============================================================================
+    // =============================================================================
+    // menu lowongan start
+    // =============================================================================
 
     public function loker()
     {
@@ -820,6 +839,50 @@ class C_perusahaan extends CI_Controller
         }
     }
 
+    // =============================================================================
+    // menu lowongan end
+    // =============================================================================
+    // =============================================================================
+    // menu seleksi start
+    // =============================================================================
+    public function pelamar_list($q)
+    {
+        $id = $this->uri->segment(4);
+        if ($q==0) {
+            $status = 'Diproses';
+        }else{
+            $status = 'Diterima';
+        }
+        $data['q'] = $q;
+        $data['pelamar'] = $this->mp->get_pelamar($id, $status);
+        $this->session->set_userdata('id_lowongan', $id);
+        $this->template->set('title', 'Seleksi | SIP BLK Surakarta');
+        $this->template->set('header', 'Seleksi');
+        $this->template->set('breadcrumb', 'Seleksi');
+        $this->template->set('breadcrumb2', '');
+        $this->template->load('perusahaan_layout', 'contents' , 'v_perusahaan/v_seleksi/pelamar_list', $data);
+    }
+
+    public function seleksi_pelamar($q)
+    {
+        $id_pelamar = $this->uri->segment(4);
+        $id_lowongan = $this->session->userdata('id_lowongan');
+        if ($q != 0) {
+            $data['status'] = 'Diterima';
+        }else{
+            $data['status'] = 'Ditolak';
+        }
+        
+        $this->mp->update_status_pelamar($id_pelamar, $data);
+        redirect('c_perusahaan/pelamar_list/'.$id_lowongan,'refresh');
+    }
+    // =============================================================================
+    // menu seleksi end
+    // =============================================================================
+    // =============================================================================
+    // menu setting start
+    // =============================================================================
+
     public function ubah_pwd()
     {
         $this->template->set('title', 'SIP BLK Surakarta | Setting');
@@ -848,6 +911,10 @@ class C_perusahaan extends CI_Controller
             redirect('c_perusahaan/ubah_pwd','refresh');
         }
     }
+
+    // =============================================================================
+    // menu setting end
+    // =============================================================================
 
     public function _rules() 
     {
