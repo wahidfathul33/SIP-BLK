@@ -49,9 +49,9 @@
                     	</div>
                     </div>
                     <div class="demo-checkbox">
-                    <input type="checkbox" id="basic_checkbox_1" onclick="Toggle()" />
-                    <label for="basic_checkbox_1">Lihat password</label>
-                </div>
+                        <input type="checkbox" id="basic_checkbox_1" onclick="Toggle()" />
+                        <label for="basic_checkbox_1">Lihat password</label>
+                    </div>
                     <input type="hidden" name="level" value="<?php echo $level;?>">
                     <button type="submit" class="btn btn-primary" id="bt">Simpan</button>
                 </form>

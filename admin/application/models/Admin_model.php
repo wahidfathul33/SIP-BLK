@@ -17,7 +17,7 @@ class Admin_model extends CI_Model
         $this->db->from('member');
         return $this->db->count_all_results();
     }
-
+ 
     function get_member($id)
     {
         $this->db->join('member', 'member.id_users = users.id_users', 'left');
@@ -62,6 +62,17 @@ class Admin_model extends CI_Model
         return $this->db->get('lowongan')->result();
     }
 
+    function get_loker_id($id)
+    {
+        $this->db->where('id_lowongan', $id);
+        return $this->db->get('lowongan')->row();
+    }
+
+    function loker_status($data, $id)
+    {
+        $this->db->where('id_lowongan', $id);
+        $this->db->update('lowongan', $data);
+    }
     function get_kategori()
     {
         return $this->db->get('kategori_loker')->result();
@@ -81,6 +92,7 @@ class Admin_model extends CI_Model
         $this->db->join('member', 'member.id_users = users.id_users', 'left');
         $this->db->join('perusahaan', 'perusahaan.id_users = users.id_users', 'left');
         $this->db->where('users.id_level', $id);
+        $this->db->order_by('is_active', 'asc');
         return $this->db->get('users')->result();
     }
 
@@ -154,5 +166,47 @@ class Admin_model extends CI_Model
     {
         $this->db->where('id_sub_kejuruan', $id);
         return $this->db->delete('sub_kejuruan');
+    }
+
+    function notif_perusahaan()
+    {
+        $this->db->where('is_active','0');
+        $this->db->where('id_level','4');
+        return $this->db->count_all_results('users');
+    }
+
+    function waktu_notif_perusahaan()
+    {
+        $this->db->where('is_active','0');
+        $this->db->where('id_level','4');
+        $this->db->order_by('tanggal', 'asc');
+        $d = $this->db->get('users', 1, 0)->result();
+
+        foreach ($d as $row) {
+            $tanggal = $row->tanggal;
+            return $tanggal;
+        }
+
+        
+    }
+
+    function notif_loker()
+    {
+        $this->db->where('status_publish','Menunggu');
+        return $this->db->count_all_results('lowongan');
+    }
+
+    function waktu_notif_loker()
+    {
+        $this->db->where('status_publish','Menunggu');
+        $this->db->order_by('tgl_posting', 'asc');
+        $d = $this->db->get('lowongan', 1, 0)->result();
+
+        foreach ($d as $row) {
+            $tanggal = $row->tgl_posting;
+            return $tanggal;
+        }
+
+        
     }
 }

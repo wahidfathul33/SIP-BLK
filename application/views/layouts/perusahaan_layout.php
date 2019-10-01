@@ -349,6 +349,7 @@
     <!-- Date range Plugin JavaScript -->
     <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjsPerusahaan.js"></script>
     <script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjs.js"></script>
 </body>
 

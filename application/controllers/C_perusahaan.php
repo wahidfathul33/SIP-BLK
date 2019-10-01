@@ -94,24 +94,28 @@ class C_perusahaan extends CI_Controller
 
     public function getKota() {
         $json = array();
-        $this->wil->set_provinsi_id($this->input->post('provID'));
-        $json = $this->wil->get_kota();
+        $json = $this->wil->get_kota($this->input->post('provID'));
+        header('Content-Type: application/json');
+        echo json_encode($json);
+    }
+
+    public function getIDKota() {
+        $json = array();
+        $json = $this->wil->get_kota($this->input->post('provID'));
         header('Content-Type: application/json');
         echo json_encode($json);
     }
  
     function getKecamatan() {
         $json = array();
-        $this->wil->set_kota_id($this->input->post('kotaID'));
-        $json = $this->wil->get_kecamatan();
+        $json = $this->wil->get_kecamatan($this->input->post('kotaID'));
         header('Content-Type: application/json');
         echo json_encode($json);
     }
 
     function getKelurahan() {
         $json = array();
-        $this->wil->set_kec_id($this->input->post('kecID'));
-        $json = $this->wil->get_kelurahan();
+        $json = $this->wil->get_kelurahan($this->input->post('kecID'));
         header('Content-Type: application/json');
         echo json_encode($json);
     }
@@ -258,7 +262,7 @@ class C_perusahaan extends CI_Controller
         $alamat_data = json_decode($row->alamat_perusahaan);
         $skala_data = array('','Mikro','Kecil','Menengah','Besar');
         $pemilikan_data = array('','Perusahaan perorangan (PO)','Firma (Fa)','Perseroan Komanditer (CV)','Perseroan Terbatas (PT)','Perseroan Terbatas Negara (Persero)','Perusahaan Daerah (PD)','Perusahaan Negara Umum (Perum)','Perusahaan Negara Jawatan (Perjan)','Koperasi','Yayasan');
-
+        $kota = strtoupper($alamat_data->kota);
         $data = array(
                 'id_perusahaan' => $row->id_perusahaan,
                 'id_users' => $row->id_users,
@@ -268,6 +272,8 @@ class C_perusahaan extends CI_Controller
                 // 'kecamatan' => $alamat_data->kecamatan,
                 // 'kota' => $alamat_data->kota,
                 'provinsi' => $this->wil->get_provinsi(),
+                'kota' => $this->wil->get_kota_id($kota),
+                'provinsi_data' => strtoupper($alamat_data->provinsi),
                 'kode_pos' => $row->kode_pos,
                 'skala_data' => $skala_data,
                 'skala' => $row->skala,
@@ -282,7 +288,7 @@ class C_perusahaan extends CI_Controller
                 'logo' => $row->logo,
                 'siup' => $row->siup,
                 'npwp' => $row->npwp,
-                );          
+                );
         
         $this->template->set('title', 'Profil | SIP BLK Surakarta');
         $this->template->set('header', 'Profil');
@@ -561,8 +567,8 @@ class C_perusahaan extends CI_Controller
             'id_lowongan'   => $row->id_lowongan,
             'header'        => $row->header,
             'tanggal'       => $row->tanggal,
-            'waktu_mulai'         => $row->waktu_mulai,
-            'waktu_selesai'       => $row->waktu_selesai,
+            'waktu_mulai'   => $row->waktu_mulai,
+            'waktu_selesai' => $row->waktu_selesai,
             'lokasi'        => $row->lokasi,
             'maps'          => $row->maps_lokasi,
             'jns_tes_data'  => $row->jenis_tes,

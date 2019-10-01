@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-12"> 
                             <table id="myTable" class="table table-bordered ">
-                                <?php echo $this->session->flashdata('notif');?>
+                                <?php echo $this->session->flashdata('notif');?> 
                                 <thead>
                                     <tr class="font-weight-bold">
                                         <td>No.</td>

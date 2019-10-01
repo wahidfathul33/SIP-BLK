@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class C_admin extends CI_Controller 
+class C_admin extends CI_Controller  
 {
     function __construct()
     {
@@ -39,11 +39,6 @@ class C_admin extends CI_Controller
         # code...
     }
 
-    public function berita($value='')
-    {
-        # code...
-    }
-
     // ---------------------lowongan ---------------------
     public function lowongan()
     {
@@ -54,6 +49,30 @@ class C_admin extends CI_Controller
         $this->template->set('breadcrumb', 'Lowongan');
         $this->template->set('breadcrumb2', '');
         $this->template->load('admin_layout', 'contents' , 'lowongan/lowongan_list', $data);
+    }
+
+    public function loker_detail()
+    {
+        $id = $this->input->get('id');
+        
+        $get_loker = $this->Admin_model->get_loker_id($id);
+        $this->session->set_userdata('id_loker', $get_loker->id_lowongan);
+        echo json_encode($get_loker);
+        exit();
+    }  
+
+    public function loker_status($q)
+    {
+        $id = $this->uri->segment(4);
+        if ($q == 1) {
+            $data['status_publish'] = "Publik";
+        }else{
+            $data['status_publish'] = "Privat";
+        }
+
+        $this->Admin_model->loker_status($data, $id);
+        $this->session->set_flashdata('notif', '<div class="alert alert-success">Ubah status publis berhasil!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
+        redirect('c_admin/lowongan');
     }
 
     public function kategori()
@@ -319,6 +338,32 @@ class C_admin extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[30]');
         $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'trim|required|matches[password]', ['matches' => 'Password tidak sama']);
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+    public function notif_verifikasi_perusahaan(){
+        $notif       = $this->Admin_model->notif_perusahaan();
+        $mytimestamp = $this->Admin_model->waktu_notif_perusahaan();
+        // $d       = explode(' ',$mytimestamp);
+        // $tgl     = $d[0];
+        // $waktu   = date('d m Y', $tgl);
+        // echo "<pre>";
+        // print_r ($waktu);
+        // echo "</pre>";
+        $data = array('data' => $notif, 'waktu' => $mytimestamp);
+        echo json_encode($data);
+    }
+
+    public function notif_verifikasi_loker(){
+        $notif       = $this->Admin_model->notif_loker();
+        $mytimestamp = $this->Admin_model->waktu_notif_loker();
+        // $d       = explode(' ',$mytimestamp);
+        // $tgl     = $d[0];
+        // $waktu   = date('d m Y', $tgl);
+        // echo "<pre>";
+        // print_r ($waktu);
+        // echo "</pre>";
+        $data = array('dataloker' => $notif, 'waktuloker' => $mytimestamp);
+        echo json_encode($data);
     }
 }
 

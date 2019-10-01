@@ -71,7 +71,7 @@
                                 </select><span class="bar"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-12">
                         <div class="form-group m-b-40">
                             <h5>Bidang Industri</h5>
@@ -116,7 +116,7 @@
                                     <?php
                                     foreach ($provinsi as $prov) {
                                         ?>
-                                        <option value="<?php echo $prov['prov_id'] ?>"><?php echo $prov['prov_name'] ?></option>
+                                        <option <?php if($provinsi_data == $prov['prov_name']){echo "selected";} ?> value="<?php echo $prov['prov_id'] ?>"><?php echo $prov['prov_name'] ?></option>
                                         <?php
                                     }
                                     ?>
@@ -126,6 +126,7 @@
                         <div class="form-group m-b-40">
                             <h5>Kabupaten / Kota</h5>
                             <div class="controls">
+                                <input type="hidden" class="id_kota" id="id_kota" value="<?php echo $kota;?>">
                                 <select class = "form-control p-0 select2" onchange="getKecamatan(this.value)" id="kota" name="kota" required data-validation-required-message="Kabupaten / Kota tidak boleh kosong" style="width: 100%">
                                     <option value="">Please Select</option>
                                 </select>

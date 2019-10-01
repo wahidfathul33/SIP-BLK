@@ -341,10 +341,10 @@ var JobBoard = function(){
 			var menu = jQuery('.sticky-header');
 			if ($(window).scrollTop() > menu.offset().top) {
 				menu.addClass('is-fixed');
-				$('.header-style-5 .container > .logo-header .logo').attr('src','images/logo.png');
+				$('.header-style-5 .container > .logo-header .logo').attr('src',baseurl + 'assets/frontend/images/logo.png');
 			} else {
 				menu.removeClass('is-fixed');
-				$('.header-style-5 .container > .logo-header .logo').attr('src','images/logo-white-2.png')
+				$('.header-style-5 .container > .logo-header .logo').attr('src',baseurl + 'assets/frontend/images/logo-white-2.png')
 			}
 		});
 		/* Main navigation fixed on top  when scroll down function custom end*/
@@ -613,8 +613,9 @@ var JobBoard = function(){
 	}
 	
 	var handleSupport = function(){
-		var support = '<a href="https://api.whatsapp.com/send?phone=6285771321998&text=blksurakarta.com%20,saya%20mau%20tanya.." target="_blank" class="bt-support-now theme-btn"><i class="ti-headphone-alt"></i><span>Support</span></a><!-- Go to www.addthis.com/dashboard to customize your tools --><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b221c5e31b4e54b"></script>';
+		var support = '<a href="https://api.whatsapp.com/send?phone=6285771321998&text=blksurakarta.com%20,saya%20mau%20tanya.." target="_blank" class="bt-support-now theme-btn"><i class="ti-headphone-alt"></i><span>Support</span></a>';
 		// <a href="https://themeforest.net/user/dexignzone/portfolio" target="_blank" class="bt-buy-now theme-btn"><i class="ti-shopping-cart"></i><span>Buy Now</span></a>
+		// <!-- Go to www.addthis.com/dashboard to customize your tools --><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b221c5e31b4e54b"></script>
 		jQuery('body').append(support);
 	}
 	

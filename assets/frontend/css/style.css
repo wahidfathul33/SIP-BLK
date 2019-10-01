@@ -2073,7 +2073,9 @@ label {
     border-top-color: #e7ecf1;
 }
 .form-group {
-    margin-bottom: 25px;
+    /*margin-bottom: 25px;*/*/
+    position: relative;
+    margin-bottom: 1.5rem;
 }
 .form-control {
     border-color: #e1e6eb;
@@ -2097,6 +2099,21 @@ label {
 .form-group.form-inline .radio,
 .form-group.form-inline .checkbox {
     margin-right: 15px;
+}
+
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  opacity: 0.5;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
 }
 /*input group*/
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content=""> 
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url();?>../assets/admintemplate/assets/images/favicon.png">
@@ -112,7 +112,8 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                                <div class="notify" id="ping"> <span class="heartbit"></span> <span class="point"></span> </div>
+                                <div class="notify" id="ping2"> <span class="heartbit"></span> <span class="point"></span> </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
                                 <ul>
@@ -122,33 +123,28 @@
                                     <li>
                                         <div class="message-center">
                                             <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Launch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
-                                            </a>
+                                            <div id="notif-perusahaan">
+                                                <a href="<?= base_url()?>c_admin/users/4">
+                                                    <div class="btn btn-danger btn-circle"><span id="jumlah" class="font-weight-bold"></span></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Perusahaan Baru</h5> <span class="mail-desc">Butuh verifikasi</span> <span class="time" id="waktu"></span> 
+                                                    </div>
+                                                </a>
+                                            </div>
                                             <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                            </a>
+
+                                            <div id="notif-loker">
+                                                <a href="<?= base_url()?>c_admin/lowongan">
+                                                    <div class="btn btn-success btn-circle"><span id="jmloker" class="font-weight-bold"></span></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Lowongan Baru</h5> <span class="mail-desc">Butuh verifikasi</span> <span class="time" id="wkloker"></span> 
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);" id="clearnotif"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
                                     </li>
                                 </ul>
                             </div>
@@ -206,8 +202,8 @@
                         </li>
                         <li class="menu "> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-newspaper-o"></i><span class="hide-menu">Artikel</span></a>
                         </li>
-                        <li class="menu "> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-bullhorn"></i><span class="hide-menu">Berita</span></a>
-                        </li>
+                        <!-- <li class="menu "> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-bullhorn"></i><span class="hide-menu">Berita</span></a>
+                        </li> -->
                         <li class="menu "> <a class="waves-effect waves-dark" href="<?php echo base_url();?>c_admin/lowongan" aria-expanded="false"><i class="fa fa-file-text-o"></i><span class="hide-menu">Lowongan</span></a>
                         </li>
                         
@@ -333,15 +329,15 @@
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!-- chartist chart -->
-    <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/chartist-js/dist/chartist.min.js"></script>
-    <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+<!--     <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script> -->
     <!--c3 JavaScript -->
     <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/d3/d3.min.js"></script>
     <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/c3-master/c3.min.js"></script>
     <!-- Vector map JavaScript -->
-    <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <!-- <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/vectormap/jquery-jvectormap-us-aea-en.js"></script>
-    <script src="<?php echo base_url();?>../assets/admintemplate/material/js/dashboard2.js"></script>
+    <script src="<?php echo base_url();?>../assets/admintemplate/material/js/dashboard2.js"></script> -->
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
@@ -385,6 +381,55 @@
     var baseurl = "<?php echo base_url(); ?>";
     </script>
     <script src="<?php echo base_url();?>../assets/admintemplate/material/js/mycustomjs.js"></script>
+    <script src="<?php echo base_url();?>../assets/admintemplate/material/js/mycustomjsAdmin.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            document.getElementById("ping").style.display = "none";
+            document.getElementById("ping2").style.display = "none";
+            document.getElementById("notif-perusahaan").style.display = "none";
+            document.getElementById("notif-loker").style.display = "none";
+
+            var interval=setInterval(function(){
+                $.ajax({
+                    url : baseurl + "c_admin/notif_verifikasi_perusahaan",
+                    dataType:'json',
+                    success:function(response) {
+                        if(response.data == '0'){
+                            document.getElementById("ping").style.display = "none";
+                            document.getElementById("notif-perusahaan").style.display = "none";
+                        }else{
+                            document.getElementById("ping").style.display = "block";
+                            document.getElementById("ping2").style.display = "none";
+                            document.getElementById("notif-perusahaan").style.display = "block";
+                            $('#jumlah').html(response.data);
+                            $('#waktu').html(response.waktu);
+                        }
+                    }
+                });
+
+                $.ajax({
+                    url : baseurl + "c_admin/notif_verifikasi_loker",
+                    dataType:'json',
+                    success:function(response) {
+                        if(response.dataloker == '0'){
+                            document.getElementById("ping2").style.display = "none";
+                            document.getElementById("notif-loker").style.display = "none";
+                        }else{
+                            document.getElementById("ping").style.display = "none";
+                            document.getElementById("ping2").style.display = "block";
+                            document.getElementById("notif-loker").style.display = "block";
+                            $('#jmloker').html(response.dataloker);
+                            $('#wkloker').html(response.waktuloker);
+                        }
+                    }
+                });
+            }
+            ,6000);
+        });
+
+
+    </script>
 </body>
 
 </html>
