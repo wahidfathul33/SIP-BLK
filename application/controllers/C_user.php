@@ -183,8 +183,9 @@ class C_user extends CI_Controller {
             $this->email->from('team.antigay@gmail.com', 'Bursa Pasar Kerja BLK Surakarta');
             $this->email->to($email); 
             $this->email->subject('Lupa password | Bursa Pasar Kerja BLK Surakarta');
+            $email_uri = str_replace('@', 'EMAIL',$email);
             $this->email->message('Silahkan klik link di bawah ini untuk membuat password baru <br> 
-                '.anchor(site_url('c_user/create_new_pwd/'.$email),'Aktivasi akun'));
+                '.anchor(site_url('c_user/create_new_pwd/'.$email_uri),'Aktivasi akun'));
 
             if ($this->email->send()) {
             $this->session->set_flashdata('alert', '<div class="alert alert-success">Berhasil! <br>Silakan cek email anda untuk membuat password baru anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
@@ -200,19 +201,20 @@ class C_user extends CI_Controller {
 
     public function create_new_pwd($email)
     {
-        $data['email'] = $email;
+        $data['email'] = str_replace('EMAIL', '@', $email);
         
         $this->template->set('title', 'Lupa Password | SIP BLK Surakarta');
         $this->template->load('frontend_layout', 'contents' , 'v_user/forgot_pwd_form', $data);
     }
 
-    public function create_new_pwd_act($email){
+    public function create_new_pwd_act(){
+        $email = $this->input->post('email');
         $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
         $this->mdl->update_pwd($email, $data);
         
         $this->session->set_flashdata('alert', '<div class="alert alert-success">Buat password baru berhasil!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
             
-        redirect('c_login/user_login','refresh');
+        redirect('c_login/login','refresh');
     }
 
 	public function _rules() 

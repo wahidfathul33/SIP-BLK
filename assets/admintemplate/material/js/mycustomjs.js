@@ -1,3 +1,9 @@
+// ==========================================================================================
+                                // alamat
+// ==========================================================================================
+
+
+
 
 // ==============================================================
 // Select2
@@ -18,7 +24,7 @@ $(".select2").select2({
 
 
 // ==============================================================
-// dynamic menu
+// dynamic menu 
 // ==============================================================
 
 $(".menu").click(function(){
@@ -100,15 +106,12 @@ $(function(window, document, $) {
 // ==============================================================
 
         // Basic
-        $('.dropify').dropify();
-
-        // Translated
-        $('.dropify-fr').dropify({
+        $('.dropify').dropify({
             messages: {
-                default: 'Glissez-déposez un fichier ici ou cliquez',
-                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
-                remove: 'Supprimer',
-                error: 'Désolé, le fichier trop volumineux'
+                default: 'Drag atau drop untuk memilih gambar',
+                replace: 'Ganti',
+                remove:  'Hapus',
+                error:   'error'
             }
         });
 

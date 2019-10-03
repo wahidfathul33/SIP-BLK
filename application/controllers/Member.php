@@ -11,18 +11,12 @@ class Member extends CI_Controller
         $this->load->model(array('Member_model','Riwayat_pendidikan_model','Riwayat_kerja_model'));
         $this->load->library('form_validation');
         $this->template->set('header', '');
-        
-        if($this->session->userdata('masuk') != TRUE){
-            redirect('index');
-        }
+
     }
 
     public function index()
     {
-        if ($this->session->userdata('status') != 'Aktif')
-        {
-            redirect('users/cek_status');
-        }
+       
         $row = $this->Member_model->get_by_id();
         if ($row) {
     	$this->load->model('Pelamar_model');

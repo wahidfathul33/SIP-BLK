@@ -51,7 +51,7 @@
 			                        <input type="checkbox" class="filled-in" id="show_pass" onclick="Toggle()" />
 			                        <label for="show_pass">Lihat password</label>
 			                    </div>
-			                    <input type="hidden" name="role" value="<?= $role?>">
+			                    <input type="hidden" name="email" value="<?= $email?>">
 			                    
 								<div class="g-recaptcha" data-sitekey="6LfpWrcUAAAAAAVfY1drweRAoCU-rti9ih1g7C7A"></div>
 								<br>

@@ -17,8 +17,8 @@ class Login_model extends CI_Model{
     function get_user($email)
     {
     	$this->db->join('level', 'users.id_level = level.id_level');
-		$this->db->join('member', 'member.id_users = users.id_users', 'left');
-		$this->db->join('perusahaan', 'perusahaan.id_users = users.id_users', 'left');
+		// $this->db->join('member', 'member.id_users = users.id_users', 'left');
+		// $this->db->join('perusahaan', 'perusahaan.id_users = users.id_users', 'left');
     	$this->db->where('users.email', $email);
     	$this->db->limit($this->limit);
     	return $this->db->get('users')->row_array();

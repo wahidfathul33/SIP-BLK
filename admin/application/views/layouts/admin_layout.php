@@ -111,7 +111,7 @@
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
+                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
                                 <div class="notify" id="ping"> <span class="heartbit"></span> <span class="point"></span> </div>
                                 <div class="notify" id="ping2"> <span class="heartbit"></span> <span class="point"></span> </div>
                             </a>
@@ -234,6 +234,8 @@
                                 <li><a class="menu " href="<?php echo base_url().'c_admin/users/3';?>">Non Alumni</a></li>
                                 <li><a class="menu " href="<?php echo base_url().'c_admin/users/4';?>">Perusahaan</a></li>
                             </ul>
+                        </li>
+                        <li class="menu "> <a class="waves-effect waves-dark" href="<?php echo base_url();?>c_login/logout" aria-expanded="false"><i class="fa fa-power-off"></i><span class="hide-menu">Logout</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -399,6 +401,7 @@
                             document.getElementById("ping").style.display = "none";
                             document.getElementById("notif-perusahaan").style.display = "none";
                         }else{
+                            document.getElementById("kosong").style.display = "none";
                             document.getElementById("ping").style.display = "block";
                             document.getElementById("ping2").style.display = "none";
                             document.getElementById("notif-perusahaan").style.display = "block";

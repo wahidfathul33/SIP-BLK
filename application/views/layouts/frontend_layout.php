@@ -23,26 +23,43 @@
 	
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	 
 	<!--[if lt IE 9]>
 	<script src="<?php echo base_url();?>assets/frontend/js/html5shiv.min.js"></script>
 	<script src="<?php echo base_url();?>assets/frontend/js/respond.min.js"></script>
 	<![endif]-->
 	
 	<!-- STYLESHEETS -->
+    <link href="<?php echo base_url();?>assets/admintemplate/assets/plugins/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+
 	<link href="<?php echo base_url();?>assets/admintemplate/material/css/style.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/css/plugins.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/css/templete.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/css/skin/skin-1.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/frontend/plugins/datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link href="<?php echo base_url();?>assets/admintemplate/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="<?php echo base_url();?>assets/admintemplate/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+
 	<!-- Revolution Slider Css -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/plugins/revolution/revolution/css/layers.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/plugins/revolution/revolution/css/settings.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/plugins/revolution/revolution/css/navigation.css">
 	<!-- Revolution Navigation Style -->
+    <style type="text/css">
+        .select2-container--default .select2-selection--single {
+          border-color: #d9d9d9;
+          height: 48px; }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+          line-height: 48px; }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+          height: 43px; }
+    </style>
 </head>
-<body id="bg">
+<body id="bg" style="color: black;">
 <!-- <div id="loading-area"></div> -->
 <div class="page-wraper">
 	<!-- header -->
@@ -53,7 +70,7 @@
                 <div class="container clearfix">
                     <!-- website logo -->
                     <div class="logo-header mostion">
-						<a href="index-2.html"><img src="<?php echo base_url();?>assets/frontend/images/logo.png" class="logo" alt=""></a>
+						<a href=""><img src="<?php echo base_url();?>assets/frontend/images/logo.png" class="logo" alt=""></a>
 					</div>
                     <!-- nav toggle button -->
                     <!-- nav toggle button -->
@@ -65,8 +82,15 @@
                     <!-- extra nav -->
                     <div class="extra-nav">
                         <div class="extra-cell">
+                            <?php $role = $this->session->userdata('role'); if (!$role) {?>
                             <a href="<?=base_url()?>c_user" class="site-button"><i class="fa fa-user"></i> Sign Up</a>
                             <a href="<?=base_url()?>c_login/login" class="site-button"><i class="fa fa-lock"></i> login</a>
+                            <?php }elseif($role == 1 || $role == 4){ ?>
+                            <a href="<?=base_url()?>c_login/logout" class="site-button"><i class="fa fa-power-off"></i> Logout</a>
+                            <?php }else{ ?>
+                            <a href="<?=base_url()?>c_member" class="site-button"><i class="fa fa-user"></i> Profil</a>
+                            <a href="<?=base_url()?>c_login/logout" class="site-button"><i class="fa fa-power-off"></i> Logout</a>
+                            <?php  } ?>
                         </div>
                     </div>
                     <!-- Quik search -->
@@ -79,7 +103,7 @@
                     <!-- main nav -->
                     <div class="header-nav navbar-collapse collapse justify-content-start float-right" id="navbarNavDropdown">
                         <ul class="nav navbar-nav">
-							<li class="menu active">
+							<li class="menu">
 								<a href="#">Beranda</a>
 							</li>
 							<li class="menu">
@@ -100,11 +124,12 @@
 							<li class="menu">
 								<a href="#">Berita</i></a>
 							</li>
-							<li class="menu">
+							<!-- <li class="menu">
 								<a href="#">Artikel</a>
-							</li>
+							</li> -->
 						</ul>			
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -185,6 +210,8 @@
 <script src="<?php echo base_url();?>assets/frontend/plugins/wow/wow.js"></script><!-- WOW JS -->
 <script src="<?php echo base_url();?>assets/frontend/plugins/bootstrap/js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
 <script src="<?php echo base_url();?>assets/frontend/plugins/bootstrap/js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+
 <script src="<?php echo base_url();?>assets/frontend/plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
 <script src="<?php echo base_url();?>assets/frontend/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
 <script src="<?php echo base_url();?>assets/frontend/plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
@@ -201,8 +228,23 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script><!-- Google API For Recaptcha  -->
 <script src="<?php echo base_url();?>assets/frontend/js/dz.ajax.js"></script><!-- CONTACT JS  -->
 <script src="<?php echo base_url();?>assets/frontend/plugins/paroller/skrollr.min.js"></script><!-- PAROLLER -->
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+<script src="<?php echo base_url();?>assets/admintemplate/material/js/wilayahjs.js"></script>
+
 <script src="<?php echo base_url();?>assets/admintemplate/material/js/validation.js"></script> <!-- form validation --> 
+<!-- <script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjs.js"></script> -->
+
 <script>
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true
+        });
+
 	$(".menu").click(function(){
         var callItem=$(this);
         callItem.addClass('active');
@@ -210,21 +252,36 @@
     });
 
 	function Toggle() { 
-    var temp = document.getElementById("password"); 
-    if (temp.type === "password") { 
-        temp.type = "text"; 
-    } 
-    else { 
-        temp.type = "password"; 
-    } 
-    var temp = document.getElementById("passconf"); 
-    if (temp.type === "password") { 
-        temp.type = "text"; 
-    } 
-    else { 
-        temp.type = "password"; 
-    } 
-}
+        var temp = document.getElementById("password"); 
+        if (temp.type === "password") { 
+            temp.type = "text"; 
+        } 
+        else { 
+            temp.type = "password"; 
+        } 
+        var temp = document.getElementById("passconf"); 
+        if (temp.type === "password") { 
+            temp.type = "text"; 
+        } 
+        else { 
+            temp.type = "password"; 
+        } 
+    }
+
+    $(document).ready(function(){
+        $('.dropify').dropify({
+            messages: {
+                default: 'Drag atau drop untuk memilih gambar',
+                replace: 'Ganti',
+                remove:  'Hapus',
+                error:   'error'
+            }
+        });
+    });
+     // For select 2
+    $(".select2").select2({
+        placeholder: 'Please Select'
+    });
 </script>
 <script>
     ! function(window, document, $) {
@@ -236,7 +293,7 @@
     }(window, document, jQuery);
     </script>
 
-<script type="text/javascript">var baseurl = <?= base_url()?></script>
+<script type="text/javascript">var baseurl = "<?= base_url()?>"</script>
 <!-- Go to www.addthis.com/dashboard to customize your tools --> 
 
 </body>

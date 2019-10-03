@@ -5,7 +5,7 @@ class C_login extends CI_Controller{
         $this->load->model('login_model');
         $this->load->model('M_perusahaan', 'mp');
     }
- 
+  
     public function login()
     {
         $this->template->set('title', 'Login | SIP BLK Surakarta');
@@ -28,39 +28,31 @@ class C_login extends CI_Controller{
                 // echo "<pre>";
                 // print_r ($data);
                 // echo "</pre>";exit();
-
-                $this->session->set_userdata('masuk',TRUE);
                  if($data['id_level']=='2'){ //alumni
-                    $this->session->set_userdata('akses','2');
-                    $this->session->set_userdata('jenis_users',$data['id_level']);
+                    $this->session->set_userdata('role',$data['id_level']);
                     $this->session->set_userdata('ses_email',$data['email']);
-                    $this->session->set_userdata('namalv',$data['nama_level']);
+                    $this->session->set_userdata('jenis_user',$data['nama_level']);
                     $this->session->set_userdata('status',$data['is_active']);
                     $this->session->set_userdata('id_users',$data['id_users']);
-                    $this->session->set_userdata('nama',$data['nama']);
-                    $this->session->set_userdata('foto',$data['foto']);
                     $this->session->set_userdata('tanggal',$data['tanggal']);
                     if ($data['is_active'] == '1') {
                         $this->session->set_flashdata('alert','<div class="alert alert-success">Berhasil login<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
-                        redirect('c_login/login');
+                        redirect('c_member');
                     }else{
                         $this->session->set_flashdata('alert','<div class="alert alert-danger">Akun anda belum aktif, Silakan verifikasi akun anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
                         redirect('c_login/login');
                     }
 
                  }elseif($data['id_level']=='3'){ //non alumni
-                    $this->session->set_userdata('akses','3');
-                    $this->session->set_userdata('jenis_users',$data['id_level']);
+                    $this->session->set_userdata('role',$data['id_level']);
                     $this->session->set_userdata('ses_email',$data['email']);
-                    $this->session->set_userdata('namalv',$data['nama_level']);
+                    $this->session->set_userdata('jenis_user',$data['nama_level']);
                     $this->session->set_userdata('status',$data['is_active']);
                     $this->session->set_userdata('id_users',$data['id_users']);
-                    $this->session->set_userdata('nama',$data['nama']);
-                    $this->session->set_userdata('foto',$data['foto']);
                     $this->session->set_userdata('tanggal',$data['tanggal']);
                     if ($data['is_active'] == '1') {
                         $this->session->set_flashdata('alert','<div class="alert alert-success">Berhasil login!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
-                        redirect('c_login/login');
+                        redirect('c_member');
                     }else{
                          $this->session->set_flashdata('alert','<div class="alert alert-danger">Akun anda belum aktif, Silakan verifikasi akun anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
                         redirect('c_login/login');
@@ -72,10 +64,8 @@ class C_login extends CI_Controller{
                     $this->session->set_userdata('namalv',$data['nama_level']);
                     $this->session->set_userdata('status',$data['is_active']);
                     $this->session->set_userdata('id_users',$data['id_users']);
-                    $this->session->set_userdata('nama',$data['nama_perusahaan']);
-                    $this->session->set_userdata('id_perusahaan',$data['id_perusahaan']);
-                    $this->session->set_userdata('foto',$data['logo']);
                     $this->session->set_userdata('tanggal',$data['tanggal']);
+                    $this->session->set_userdata('id_perusahaan',$data['id_perusahaan']);
                     if ($data['is_active'] == '1') {
                         $this->session->set_flashdata('log', 'berhasil');
                         redirect('c_perusahaan/index');
@@ -85,7 +75,6 @@ class C_login extends CI_Controller{
                     }
                 }        
         }else{  // jika username dan password tidak ditemukan atau salah
-            
             $this->session->set_flashdata('alert','<div class="alert alert-danger">Email Atau Password Salah! <button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
             redirect('c_login/login');
         }

@@ -19,6 +19,11 @@ class M_user extends CI_Model {
     	$this->db->where('email', $email);
     	return $this->db->get('users')->row();
     }
+
+    function update_pwd($email, $data){
+        $this->db->where('email', $email);
+        $this->db->update('users', $data);
+    }
 }
 
 /* End of file M_user.php */

@@ -14,7 +14,7 @@ class C_perusahaan extends CI_Controller
 
         //cek login
         if($this->session->userdata('role') != '4'){
-            redirect('error404');
+            redirect('c_login/login');            
         }
     }
 
@@ -45,7 +45,7 @@ class C_perusahaan extends CI_Controller
     public function cek_data_profil()
     {
         $row    = $this->mp->get_perusahaan();
-        if($this->session->userdata('id_perusahaan') == NULL){
+        if(!$row){
             $this->session->set_flashdata('notif', '<div class="alert alert-danger">Silakan isi data perusahaan Anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
             redirect(site_url('c_perusahaan/profil'));
         }
@@ -90,34 +90,6 @@ class C_perusahaan extends CI_Controller
         $this->template->set('breadcrumb', 'Profil');
         $this->template->set('breadcrumb2', '');
         $this->template->load('perusahaan_layout', 'contents' , 'v_perusahaan/profil', $data);
-    }
-
-    public function getKota() {
-        $json = array();
-        $json = $this->wil->get_kota($this->input->post('provID'));
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
-
-    public function getIDKota() {
-        $json = array();
-        $json = $this->wil->get_kota($this->input->post('provID'));
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
- 
-    function getKecamatan() {
-        $json = array();
-        $json = $this->wil->get_kecamatan($this->input->post('kotaID'));
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
-
-    function getKelurahan() {
-        $json = array();
-        $json = $this->wil->get_kelurahan($this->input->post('kecID'));
-        header('Content-Type: application/json');
-        echo json_encode($json);
     }
 
     public function profil_input()
@@ -446,7 +418,7 @@ class C_perusahaan extends CI_Controller
     // =============================================================================
     public function berita()
     {
-        // /$this->cek_data_profil();
+        $this->cek_data_profil();
         $data['berita'] = $this->mp->get_berita();
 
         // echo "<pre>";

@@ -50,7 +50,7 @@
 					                    </div>
 					                    <div class="demo-checkbox">
 					                        <input type="checkbox" class="filled-in" id="show_pass" onclick="Toggle()" />
-					                        <label for="show_pass">Lihat password</label>
+					                        <label for="show_pass" class="h1">Lihat password</label>
 					                    </div>
 										<div class="text-left">
 											<button class="site-button m-r5 button-lg">login</button>
@@ -98,7 +98,6 @@
 						<div class="max-w500 m-auto">
 							<div class="p-a30 border-1 seth">
 								<div class="tab-content nav">
-									<div style="width: 100%"><?= $this->session->flashdata('alert');?></div>
 									<h4 class="font-weight-700">Pengguna Baru</h4>
 									<p class="font-weight-600">Jika Anda belum memiliki akun, silakan mendaftar terlebih dahulu sebagai Pencari Kerja atau Perusahaan.</p>
 									

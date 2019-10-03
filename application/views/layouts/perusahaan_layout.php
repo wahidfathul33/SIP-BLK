@@ -106,7 +106,7 @@
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
+                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
                                 <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
@@ -349,6 +349,8 @@
     <!-- Date range Plugin JavaScript -->
     <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/admintemplate/material/js/wilayahjs.js"></script>
+
     <script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjsPerusahaan.js"></script>
     <script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjs.js"></script>
 </body>
