@@ -70,7 +70,7 @@
                                 </select><span class="bar"></span>
                             </div>
                         </div>
-                        <div class="col-12 form-group m-b-40">
+                        <div class="col-md-6 form-group m-b-40">
                             <h5>Lokasi</h5>
                             <div class="controls">
                                 <select class = "form-control p-0 select2" id="lokasi" name="lokasi" required    data-validation-required-message="Lokasi tidak boleh kosong" style="width: 100%">
@@ -79,6 +79,18 @@
                                         ?>
                                         <option <?php if(strtoupper($lokasi_data) == $row['kota_name']){echo "selected";}?> value="<?php echo $row['kota_name'] ?>"><?php echo $row['kota_name'] ?></option>
                                     <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group m-b-40">
+                            <h5>Tahun Pengalaman</h5>
+                            <div class="controls">
+                                <select class = "form-control p-0 select2" id="lokasi" name="pengalaman" required    data-validation-required-message="Tahun Pengalaman tidak boleh kosong" style="width: 100%">
+                                    <option value="">Please Select</option>
+                                    <option <?php if($pengalaman == "Fresh Graduate"){echo "selected";}?> value="Fresh Graduate">Fresh Graduate</option>
+                                    <?php for($i=1; $i<11; $i++){?>
+                                        <option <?php if($pengalaman == $i.' Tahun'){echo "selected";}?> value="<?= $i?> Tahun"><?= $i?> Tahun</option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>

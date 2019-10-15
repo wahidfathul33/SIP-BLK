@@ -349,7 +349,7 @@ class C_admin extends CI_Controller
         // echo "<pre>";
         // print_r ($waktu);
         // echo "</pre>";
-        $data = array('data' => $notif, 'waktu' => $mytimestamp);
+        $data = array('dataperusahaan' => $notif, 'waktu' => $mytimestamp);
         echo json_encode($data);
     }
 

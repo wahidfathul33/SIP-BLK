@@ -40,6 +40,7 @@
                             <li class="nav-item b-l" >
                                 <a class="nav-link" data-toggle="pill" href="#cetakcv"><i class="fa fa-print"></i> Cetak CV</a>
                             </li>
+                            <li class="nav-item b-l "><a class="nav-link text-danger" href="<?=base_url()?>c_login/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -150,7 +151,9 @@
                                                         <td><?php echo $pendidikan->jurusan ?></td>
                                                         <td><?php echo $pendidikan->thn_masuk ?></td>
                                                         <td><?php echo $pendidikan->thn_lulus ?></td>
-                                                        <td><a href="<?= base_url().'c_member/pendidikan_del/'.$pendidikan->id_pendidikan;?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+                                                        <td>
+                                                            <a href="<?= base_url().'c_member/pendidikan_del/'.$pendidikan->id_pendidikan;?>" class="btn btn-sm btn-danger confirm-swal" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                                        </td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                     
@@ -182,7 +185,9 @@
                                                         <td><?php echo $kerja->tgl_mulai ?></td>
                                                         <td><?php echo $kerja->tgl_selesai ?></td>
                                                         <td><?php echo $kerja->alasan ?></td>
-                                                        <td><a href="<?= base_url().'c_member/kerja_del/'.$kerja->id_pekerjaan;?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+                                                        <td>
+                                                            <a href="<?= base_url().'c_member/kerja_del/'.$kerja->id_pekerjaan;?>" class="btn btn-sm btn-danger confirm-swal" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                                        </td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 </table>
@@ -211,7 +216,9 @@
                                                         <td><?php echo $kursus->nama_pelatihan ?></td>
                                                         <td><?php echo $kursus->tgl_mulai ?></td>
                                                         <td><?php echo $kursus->tgl_selesai ?></td>
-                                                        <td><a href="<?= base_url().'c_member/kursus_del/'.$kursus->id_kursus;?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+                                                        <td>
+                                                            <a href="<?= base_url().'c_member/kursus_del/'.$kursus->id_kursus;?>" class="btn btn-sm btn-danger confirm-swal" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                                        </td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 </table>
@@ -240,7 +247,9 @@
                                                         <td><?php echo $organisasi->tempat ?></td>
                                                         <td><?php echo $organisasi->jabatan ?></td>
                                                         <td><?php echo $organisasi->periode ?></td>
-                                                        <td><a href="<?= base_url().'c_member/organisasi_del/'.$organisasi->id_organisasi;?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+                                                        <td>
+                                                            <a href="<?= base_url().'c_member/organisasi_del/'.$organisasi->id_organisasi;?>" class="btn btn-sm btn-danger confirm-swal" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                                        </td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 </table>
@@ -271,7 +280,9 @@
                                                         <td><?php echo $bahasa->membaca ?></td>
                                                         <td><?php echo $bahasa->mendengar ?></td>
                                                         <td><?php echo $bahasa->menulis ?></td>
-                                                        <td><a href="<?= base_url().'c_member/bahasa_del/'.$bahasa->id_bhs;?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+                                                        <td>
+                                                            <a href="<?= base_url().'c_member/bahasa_del/'.$bahasa->id_bhs;?>" class="btn btn-sm btn-danger confirm-swal" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                                        </td>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 </table>

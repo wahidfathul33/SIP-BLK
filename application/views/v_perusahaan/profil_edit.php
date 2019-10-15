@@ -126,7 +126,7 @@
                         <div class="form-group m-b-40">
                             <h5>Kabupaten / Kota</h5>
                             <div class="controls">
-                                <input type="hidden" class="id_kota" id="id_kota" value="<?php echo $kota;?>">
+                                <input type="hidden" id="kotaID" value="<?php echo $idkota;?>">
                                 <select class = "form-control p-0 select2" onchange="getKecamatan(this.value)" id="kota" name="kota" required data-validation-required-message="Kabupaten / Kota tidak boleh kosong" style="width: 100%">
                                     <option value="">Please Select</option>
                                 </select>
@@ -137,6 +137,7 @@
                         <div class="form-group m-b-40">
                             <h5>Kecamatan</h5>
                             <div class="controls">
+                                <input type="hidden" id="kecID" value="<?php echo $idkec;?>">
                                 <select class = "form-control p-0 select2" onchange="getKelurahan(this.value)" id="kecamatan" name="kecamatan" required    data-validation-required-message="Kecamatan tidak boleh kosong" style="width: 100%">
                                     <option value="">Please Select</option>
                                 </select>
@@ -145,6 +146,7 @@
                         <div class="form-group m-b-40">
                             <h5>Kelurahan</h5>
                             <div class="controls">
+                                <input type="hidden" id="kelID" value="<?php echo $idkel;?>">
                                 <select class = "form-control p-0 select2" id="kelurahan" name="kelurahan" required data-validation-required-message="Kelurahan tidak boleh kosong" style="width: 100%">
                                     <option value="">Please Select</option>
                                 </select>

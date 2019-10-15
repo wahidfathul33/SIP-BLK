@@ -132,20 +132,20 @@ class C_member extends CI_Controller
     public function profil_input_act()
     {
         $alamat_ktp_data = array(
-            'alamat' => ucwords($this->input->post('alamat_ktp')),
-            'kelurahan' => ucwords($this->wil->get_kel_nama($id = $this->input->post('kelurahan_ktp'))),
-            'kecamatan' => ucwords($this->wil->get_kec_nama($id = $this->input->post('kecamatan_ktp'))),
-            'kota' => ucwords($this->wil->get_kota_nama($id = $this->input->post('kota_ktp'))),
-            'provinsi' => ucwords($this->wil->get_prov_nama($id = $this->input->post('provinsi_ktp'))),
+            'alamat' => $this->input->post('alamat_ktp'),
+            'kelurahan' => $this->wil->get_kel_nama($id = $this->input->post('kelurahan_ktp')),
+            'kecamatan' => $this->wil->get_kec_nama($id = $this->input->post('kecamatan_ktp')),
+            'kota' => $this->wil->get_kota_nama($id = $this->input->post('kota_ktp')),
+            'provinsi' => $this->wil->get_prov_nama($id = $this->input->post('provinsi_ktp')),
         );
         $alamat_ktp = json_encode($alamat_ktp_data);
 
         $alamat_now_data = array(
-            'alamat' => ucwords($this->input->post('alamat_now')),
-            'kelurahan' => ucwords($this->wil->get_kel_nama($id = $this->input->post('kelurahan_now'))),
-            'kecamatan' => ucwords($this->wil->get_kec_nama($id = $this->input->post('kecamatan_now'))),
-            'kota' => ucwords($this->wil->get_kota_nama($id = $this->input->post('kota_now'))),
-            'provinsi' => ucwords($this->wil->get_prov_nama($id = $this->input->post('provinsi_now'))),
+            'alamat' => $this->input->post('alamat_now'),
+            'kelurahan' => $this->wil->get_kel_nama($id = $this->input->post('kelurahan_now')),
+            'kecamatan' => $this->wil->get_kec_nama($id = $this->input->post('kecamatan_now')),
+            'kota' => $this->wil->get_kota_nama($id = $this->input->post('kota_now')),
+            'provinsi' => $this->wil->get_prov_nama($id = $this->input->post('provinsi_now')),
         );
         $alamat_now = json_encode($alamat_now_data);
 
@@ -220,15 +220,15 @@ class C_member extends CI_Controller
                 'provinsi' => $this->wil->get_provinsi(),
                 'nikah' => $row->status_nikah,
                 'alamat_ktp' => $alamat_ktp->alamat,
-                // 'kel_ktp' => $alamat_ktp->kelurahan,
-                // 'kec_ktp' => $alamat_ktp->kecamatan,
-                // 'kota_ktp' => $alamat_ktp->kota,
-                // 'prov_ktp' => $alamat_ktp->provinsi,
+                'prov_ktp' => $alamat_ktp->provinsi,
                 'alamat_now' => $alamat_now->alamat,
-                // 'kel_now' => $alamat_now->kelurahan,
-                // 'kec_now' => $alamat_now->kecamatan,
-                // 'kota_now' => $alamat_now->kota,
-                // 'prov_now' => $alamat_now->provinsi,
+                'prov_now' => $alamat_now->provinsi,
+                'idkota_ktp' => $this->wil->get_kota_id($alamat_ktp->kota),
+                'idkec_ktp'  => $this->wil->get_kec_id($alamat_ktp->kecamatan),
+                'idkel_ktp'  => $this->wil->get_kel_id($alamat_ktp->kelurahan),
+                'idkota_now' => $this->wil->get_kota_id($alamat_now->kota),
+                'idkec_now'  => $this->wil->get_kec_id($alamat_now->kecamatan),
+                'idkel_now'  => $this->wil->get_kel_id($alamat_now->kelurahan),
                 'no_hp' => $row->no_hp,
                 'no_wa' => $row->no_wa,
                 'email' => $row->email,
@@ -243,27 +243,27 @@ class C_member extends CI_Controller
     {
         $row = $this->mm->get_member();
         $alamat_ktp_data = array(
-            'alamat' => ucwords($this->input->post('alamat_ktp')),
-            'kelurahan' => ucwords($this->wil->get_kel_nama($id = $this->input->post('kelurahan_ktp'))),
-            'kecamatan' => ucwords($this->wil->get_kec_nama($id = $this->input->post('kecamatan_ktp'))),
-            'kota' => ucwords($this->wil->get_kota_nama($id = $this->input->post('kota_ktp'))),
-            'provinsi' => ucwords($this->wil->get_prov_nama($id = $this->input->post('provinsi_ktp'))),
+            'alamat' => $this->input->post('alamat_ktp'),
+            'kelurahan' => $this->wil->get_kel_nama($id = $this->input->post('kelurahan_ktp')),
+            'kecamatan' => $this->wil->get_kec_nama($id = $this->input->post('kecamatan_ktp')),
+            'kota' => $this->wil->get_kota_nama($id = $this->input->post('kota_ktp')),
+            'provinsi' => $this->wil->get_prov_nama($id = $this->input->post('provinsi_ktp')),
         );
         $alamat_ktp = json_encode($alamat_ktp_data);
 
         $alamat_now_data = array(
-            'alamat' => ucwords($this->input->post('alamat_now')),
-            'kelurahan' => ucwords($this->wil->get_kel_nama($id = $this->input->post('kelurahan_now'))),
-            'kecamatan' => ucwords($this->wil->get_kec_nama($id = $this->input->post('kecamatan_now'))),
-            'kota' => ucwords($this->wil->get_kota_nama($id = $this->input->post('kota_now'))),
-            'provinsi' => ucwords($this->wil->get_prov_nama($id = $this->input->post('provinsi_now'))),
+            'alamat' => $this->input->post('alamat_now'),
+            'kelurahan' => $this->wil->get_kel_nama($id = $this->input->post('kelurahan_now')),
+            'kecamatan' => $this->wil->get_kec_nama($id = $this->input->post('kecamatan_now')),
+            'kota' => $this->wil->get_kota_nama($id = $this->input->post('kota_now')),
+            'provinsi' => $this->wil->get_prov_nama($id = $this->input->post('provinsi_now')),
         );
         $alamat_now = json_encode($alamat_now_data);
 
         if(! empty($_FILES) && $_FILES['foto']['name'] != null){
                 if ($row->foto != NULL) {
                     
-                $path_to_file = './uploads/images/avatar'.$row->foto;
+                $path_to_file = './uploads/images/avatar/'.$row->foto;
                     if (file_exists($path_to_file)) 
                     {
                         unlink($path_to_file);

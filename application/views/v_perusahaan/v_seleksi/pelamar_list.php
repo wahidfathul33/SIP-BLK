@@ -5,15 +5,15 @@
                 <h4 class="card-title">Tabel Member <?php if($q != 1){?><span class="float-right"><a href="<?php echo base_url().'c_perusahaan/pelamar_list/1/'.$this->session->userdata('id_lowongan');?>" class="btn btn-primary"><i class=""></i> Lihat Daftar Pelamar Diterima</a></span><?php } ?></h4>
                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                 <div class="m-t-40">
-                    <table id="example" class="table table-bordered ">
+                    <table id="tabelexport" class="table table-bordered ">
                         <thead>
                             <tr class="font-weight-bold">
                                 <td>No.</td>
                                 <td>Nama</td>                                
                                 <td>Jenis Kelamin</td>
-                                <td>Pendidikan</td>
+                                <!-- <td>Pendidikan</td>
                                 <td>Lulusan</td>
-                                <td>Jurusan</td>
+                                <td>Jurusan</td> -->
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -26,9 +26,9 @@
                                 <td width="80px"><?php echo ++$start ?></td>
                                 <td><?php echo $row->nama ?></td>                                
                                 <td><?php echo $row->jenis_kelamin ?></td>
-                                <td><?php echo $row->pendidikan ?></td>
+                                <!-- <td><?php echo $row->pendidikan ?></td>
                                 <td><?php echo $row->sekolah ?></td>
-                                <td><?php echo $row->jurusan ?></td>
+                                <td><?php echo $row->jurusan ?></td> -->
 
                                 <td style="text-align:center">
                                     <a class="btn btn-info pelamar-detail"  data-toggle="modal" data-target="#show_loker" relid="<?php echo $row->id_lowongan;?>" data-toggle="tooltip" data-placement="top" title="Lihat" target="_blank"><i class="fa fa-eye"></i></a>

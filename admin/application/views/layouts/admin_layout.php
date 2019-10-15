@@ -125,9 +125,9 @@
                                             <!-- Message -->
                                             <div id="notif-perusahaan">
                                                 <a href="<?= base_url()?>c_admin/users/4">
-                                                    <div class="btn btn-danger btn-circle"><span id="jumlah" class="font-weight-bold"></span></div>
+                                                    <div class="btn btn-danger btn-circle"><span id="jmperusahaan" class="font-weight-bold"></span></div>
                                                     <div class="mail-contnet">
-                                                        <h5>Perusahaan Baru</h5> <span class="mail-desc">Butuh verifikasi</span> <span class="time" id="waktu"></span> 
+                                                        <h5>Perusahaan Baru</h5> <span class="mail-desc">Butuh verifikasi</span> <span class="time" id="wkperusahaan"></span> 
                                                     </div>
                                                 </a>
                                             </div>
@@ -380,11 +380,10 @@
     <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="<?php echo base_url();?>../assets/admintemplate/assets/plugins/summernote/dist/summernote-bs4.min.js"></script>
     <script>
-    var baseurl = "<?php echo base_url(); ?>";
+        var baseurl = "<?php echo base_url(); ?>";
     </script>
     <script src="<?php echo base_url();?>../assets/admintemplate/material/js/mycustomjs.js"></script>
     <script src="<?php echo base_url();?>../assets/admintemplate/material/js/mycustomjsAdmin.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function(){
             document.getElementById("ping").style.display = "none";
@@ -392,25 +391,24 @@
             document.getElementById("notif-perusahaan").style.display = "none";
             document.getElementById("notif-loker").style.display = "none";
 
-            var interval=setInterval(function(){
+            setInterval(function(){
+                //notif akun perusahaan
                 $.ajax({
                     url : baseurl + "c_admin/notif_verifikasi_perusahaan",
                     dataType:'json',
                     success:function(response) {
-                        if(response.data == '0'){
+                        if(response.dataperusahaan == '0'){
                             document.getElementById("ping").style.display = "none";
                             document.getElementById("notif-perusahaan").style.display = "none";
                         }else{
-                            document.getElementById("kosong").style.display = "none";
                             document.getElementById("ping").style.display = "block";
                             document.getElementById("ping2").style.display = "none";
                             document.getElementById("notif-perusahaan").style.display = "block";
-                            $('#jumlah').html(response.data);
-                            $('#waktu').html(response.waktu);
+                            $('#jmperusahaan').html(response.dataperusahaan);
+                            $('#wkperusahaan').html(response.waktu);
                         }
                     }
                 });
-
                 $.ajax({
                     url : baseurl + "c_admin/notif_verifikasi_loker",
                     dataType:'json',
@@ -427,10 +425,10 @@
                         }
                     }
                 });
+                
             }
-            ,6000);
+            ,1000);
         });
-
 
     </script>
 </body>

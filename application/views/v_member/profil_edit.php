@@ -167,11 +167,12 @@
 		                        <div class="col-md-6 form-group m-b-40">
 		                            <h6>Provinsi</h6>
 		                            <div class="controls">
+
 		                                <select class = "form-control p-0 select2" onchange="getKota(this.value)" id="provinsi" name="provinsi_ktp" required    data-validation-required-message="Provinsi tidak boleh kosong" style="width: 100%">
 		                                    <option value="">Please Select</option>
 		                                    <?php foreach ($provinsi as $prov) :
 		                                        ?>
-		                                        <option value="<?php echo $prov['prov_id'] ?>"><?php echo $prov['prov_name'] ?></option>
+		                                        <option <?php if($prov_ktp == $prov['prov_name']){echo "selected";} ?> value="<?php echo $prov['prov_id'] ?>"><?php echo $prov['prov_name'] ?></option>
 		                                    <?php endforeach; ?>
 		                                </select>
 		                            </div>
@@ -217,7 +218,7 @@
 		                                    <option value="">Please Select</option>
 		                                    <?php foreach ($provinsi as $prov) :
 		                                        ?>
-		                                        <option value="<?php echo $prov['prov_id'] ?>"><?php echo $prov['prov_name'] ?></option>
+		                                        <option <?php if($prov_now == $prov['prov_name']){echo "selected";} ?> value="<?php echo $prov['prov_id'] ?>"><?php echo $prov['prov_name'] ?></option>
 		                                    <?php endforeach; ?>
 		                                </select>
 		                            </div>
@@ -247,11 +248,23 @@
 		                            </div>
 		                        </div>
 			                </div>
-			                <div class="row">
-			                    <div class="col-12">
-			                        <button type="submit" class="btn btn-md btn-primary" id="bt" style="width: 100%">Simpan</button>
+			                <div class="row justify-content-center">
+			                    <div class="col-3">
+			                        <button type="submit" class="site-button" id="bt" style="width: 100%">Simpan</button>
 			                    </div>
 			                </div>
+			                			<input type="hidden" id="kotaID" value="<?php echo $idkota_ktp;?>">
+
+		                            	<input type="hidden" id="kecID" value="<?php echo $idkec_ktp;?>">
+
+		                            	<input type="hidden" id="kelID" value="<?php echo $idkel_ktp;?>">
+
+                                		<input type="hidden" id="kotaIDnow" value="<?php echo $idkota_now;?>">
+
+		                            	<input type="hidden" id="kecIDnow" value="<?php echo $idkec_now;?>">
+
+		                            	<input type="hidden" id="kelIDnow" value="<?php echo $idkel_now;?>">
+
 			            </form>
 			        </div>
 		        </div>

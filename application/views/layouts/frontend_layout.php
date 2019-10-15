@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="" />
+	<meta name="keywords" content="" /> 
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
 		<meta name="description" content="JobBoard - HTML Template" />
@@ -42,6 +42,9 @@
 
     <link href="<?php echo base_url();?>assets/admintemplate/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 
+    <!--sweet alerts CSS -->
+    <link href="<?php echo base_url();?>assets/admintemplate/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+
 	<!-- Revolution Slider Css -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/plugins/revolution/revolution/css/layers.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/frontend/plugins/revolution/revolution/css/settings.css">
@@ -70,7 +73,7 @@
                 <div class="container clearfix">
                     <!-- website logo -->
                     <div class="logo-header mostion">
-						<a href=""><img src="<?php echo base_url();?>assets/frontend/images/logo.png" class="logo" alt=""></a>
+						<a href="<?= base_url()?>"><img src="<?php echo base_url();?>assets/frontend/images/logo.png" class="logo" alt=""></a>
 					</div>
                     <!-- nav toggle button -->
                     <!-- nav toggle button -->
@@ -79,54 +82,34 @@
 						<span></span>
 						<span></span>
 					</button>
-                    <!-- extra nav -->
-                    <div class="extra-nav">
-                        <div class="extra-cell">
-                            <?php $role = $this->session->userdata('role'); if (!$role) {?>
-                            <a href="<?=base_url()?>c_user" class="site-button"><i class="fa fa-user"></i> Sign Up</a>
-                            <a href="<?=base_url()?>c_login/login" class="site-button"><i class="fa fa-lock"></i> login</a>
-                            <?php }elseif($role == 1 || $role == 4){ ?>
-                            <a href="<?=base_url()?>c_login/logout" class="site-button"><i class="fa fa-power-off"></i> Logout</a>
-                            <?php }else{ ?>
-                            <a href="<?=base_url()?>c_member" class="site-button"><i class="fa fa-user"></i> Profil</a>
-                            <a href="<?=base_url()?>c_login/logout" class="site-button"><i class="fa fa-power-off"></i> Logout</a>
-                            <?php  } ?>
-                        </div>
-                    </div>
-                    <!-- Quik search -->
-                    <div class="dez-quik-search bg-primary">
-                        <form action="#">
-                            <input name="search" value="" type="text" class="form-control" placeholder="Type to search">
-                            <span id="quik-search-remove"><i class="flaticon-close"></i></span>
-                        </form>
-                    </div>
                     <!-- main nav -->
                     <div class="header-nav navbar-collapse collapse justify-content-start float-right" id="navbarNavDropdown">
                         <ul class="nav navbar-nav">
 							<li class="menu">
-								<a href="#">Beranda</a>
+								<a href="<?= base_url()?>">Beranda</a>
 							</li>
 							<li class="menu">
 								<a href="#">Lowongan Kerja <i class="fa fa-chevron-down"></i></a>
 								<ul class="sub-menu">
-									<li><a href="#" class="dez-page">Cari Lowongan</a></li>
-									<li><a href="#" class="dez-page">Pasang Lowongan</a></li>
-									<li><a href="#" class="dez-page">Perusahaan</a></li>
+									<li><a href="<?= base_url()?>c_loker/loker_cari" class="dez-page">Cari Lowongan</a></li>
+									<li><a href="<?= base_url()?>c_perusahaan/loker_add" class="dez-page">Pasang Lowongan</a></li>
+									<li><a href="<?= base_url()?>" class="dez-page">Perusahaan</a></li>
 								</ul>
 							</li>
-							<!-- <li>
-								<a href="#">For Employers <i class="fa fa-chevron-down"></i></a>
-								<ul class="sub-menu">
-									<li><a href="browse-candidates.html" class="dez-page">Browse Candidates</a></li>
-									<li><a href="submit-resume.html" class="dez-page">Submit Resume</a></li>
-								</ul>
-							</li> -->
 							<li class="menu">
-								<a href="#">Berita</i></a>
+								<a href="#">Berita</a>
 							</li>
-							<!-- <li class="menu">
-								<a href="#">Artikel</a>
-							</li> -->
+                            <li style="margin-left: 20px"></li>
+                            <?php $role = $this->session->userdata('role'); if (!$role) {?>
+                            <li class="menu"><a href="<?=base_url()?>c_user/register" class="text-white site-button"><i class="fa fa-user" style="font-size: 15px"></i>  Sign Up</a></li>
+                            <li class="menu"><a href="<?=base_url()?>c_login/login" class="text-white site-button"><i class="fa fa-lock" style="font-size: 15px"></i>  login</a></li>
+                            <?php }elseif($role == 4){ ?>
+                            <li class="menu"><a href="<?=base_url()?>c_perusahaan" class="text-white site-button"><i class="fa fa-user" style="font-size: 15px"></i>  Dashboard</a></li>
+                            <li class="menu"><a href="<?=base_url()?>c_login/logout" class="text-white site-button"><i class="fa fa-power-off" style="font-size: 15px"></i>  Logout</a></li>
+                            <?php }else{ ?>
+                            <li class="menu"><a href="<?=base_url()?>c_member" class="text-white site-button"><i class="fa fa-user" style="font-size: 15px"></i>  Profil</a></li>
+                            <li class="menu"><a href="<?=base_url()?>c_login/logout" class="text-white site-button"><i class="fa fa-power-off" style="font-size: 15px"></i>  Logout</a></li>
+                            <?php  } ?>
 						</ul>			
                     </div>
                     
@@ -152,7 +135,7 @@
                             <img src="<?php echo base_url();?>assets/frontend/images/logo_1_.png" width="250" class="m-b15" alt=""/>
 							<p class="text-capitalize m-b20">sistem informasi pasar kerja balai latihan kerja surakarta menyediakan informasi lowongan pekerjaan, mempermudah cari pekerjaan dan perekrutan karyawan.</p>
 							<ul class="list-inline m-a0">
-								<li><a href="https://www.facebook.com/BLK-Surakarta-117050028378422/" class="site-button white facebook circle "><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://www.facebook.com/BLK-Surakarta-117050028378422/" class="site-button white facebook circle" target="_blank"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="#" class="site-button white linkedin circle "><i class="fa fa-linkedin"></i></a></li>
 								<li><a href="#" class="site-button white instagram circle "><i class="fa fa-instagram"></i></a></li>
 							</ul>
@@ -232,8 +215,13 @@
     <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
+    <script src="<?php echo base_url();?>assets/admintemplate/assets/plugins/sweetalert/myswal.js"></script>
 
 <script src="<?php echo base_url();?>assets/admintemplate/material/js/wilayahjs.js"></script>
+<script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjsMember.js"></script>
+
 
 <script src="<?php echo base_url();?>assets/admintemplate/material/js/validation.js"></script> <!-- form validation --> 
 <!-- <script src="<?php echo base_url();?>assets/admintemplate/material/js/mycustomjs.js"></script> -->
@@ -294,8 +282,6 @@
     </script>
 
 <script type="text/javascript">var baseurl = "<?= base_url()?>"</script>
-<!-- Go to www.addthis.com/dashboard to customize your tools --> 
-
 </body>
 
 

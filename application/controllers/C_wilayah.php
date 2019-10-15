@@ -16,12 +16,12 @@ class C_wilayah extends CI_Controller {
         echo json_encode($json);
     }
 
-    public function getIDKota() {
-        $json = array();
-        $json = $this->wil->get_kota($this->input->post('provID'));
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
+    // public function getIDKota() {
+    //     $json = array();
+    //     $json = $this->wil->get_kota($this->input->post('provID'));
+    //     header('Content-Type: application/json');
+    //     echo json_encode($json);
+    // }
  
     public function getKecamatan() {
         $json = array();
@@ -36,6 +36,7 @@ class C_wilayah extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($json);
     }
+    
     // ====================================================================
     public function getKotaNow() {
         $json = array();

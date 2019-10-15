@@ -53,6 +53,8 @@
 
                                             <?php }else{?>
                                             <a href="<?php echo base_url().'c_perusahaan/loker_detail/'.$row->id_lowongan;?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Lihat"><i class="fa fa-eye"></i></a>
+                                            <a id="tes" href="<?php echo base_url().'c_perusahaan/loker_edit/'.$row->id_lowongan;?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                            
                                             <?php } ?>
                                         </td>
                                     </tr>

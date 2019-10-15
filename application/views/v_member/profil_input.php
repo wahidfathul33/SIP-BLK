@@ -248,9 +248,9 @@
 		                            </div>
 		                        </div>
 			                </div>
-			                <div class="row">
-			                    <div class="col-12">
-			                        <button type="submit" class="btn btn-md btn-primary" id="bt" style="width: 100%">Simpan</button>
+			                <div class="row justify-content-center">
+			                    <div class="col-3">
+			                        <button type="submit" class="site-button" id="bt" style="width: 100%">Simpan</button>
 			                    </div>
 			                </div>
 			            </form>

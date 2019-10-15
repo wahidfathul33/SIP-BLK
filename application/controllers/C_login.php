@@ -25,17 +25,16 @@ class C_login extends CI_Controller{
         $user_pwd = $data['password'];
 
         if(password_verify($pwd, $user_pwd)){
-                // echo "<pre>";
-                // print_r ($data);
-                // echo "</pre>";exit();
+
                  if($data['id_level']=='2'){ //alumni
-                    $this->session->set_userdata('role',$data['id_level']);
+                    
+                    if ($data['is_active'] == '1') {
+                        $this->session->set_userdata('role',$data['id_level']);
                     $this->session->set_userdata('ses_email',$data['email']);
                     $this->session->set_userdata('jenis_user',$data['nama_level']);
                     $this->session->set_userdata('status',$data['is_active']);
                     $this->session->set_userdata('id_users',$data['id_users']);
                     $this->session->set_userdata('tanggal',$data['tanggal']);
-                    if ($data['is_active'] == '1') {
                         $this->session->set_flashdata('alert','<div class="alert alert-success">Berhasil login<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
                         redirect('c_member');
                     }else{
@@ -44,13 +43,14 @@ class C_login extends CI_Controller{
                     }
 
                  }elseif($data['id_level']=='3'){ //non alumni
-                    $this->session->set_userdata('role',$data['id_level']);
+                    
+                    if ($data['is_active'] == '1') {
+                        $this->session->set_userdata('role',$data['id_level']);
                     $this->session->set_userdata('ses_email',$data['email']);
                     $this->session->set_userdata('jenis_user',$data['nama_level']);
                     $this->session->set_userdata('status',$data['is_active']);
                     $this->session->set_userdata('id_users',$data['id_users']);
                     $this->session->set_userdata('tanggal',$data['tanggal']);
-                    if ($data['is_active'] == '1') {
                         $this->session->set_flashdata('alert','<div class="alert alert-success">Berhasil login!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
                         redirect('c_member');
                     }else{
@@ -59,18 +59,19 @@ class C_login extends CI_Controller{
                     }
                     redirect('data_member');
                  }elseif($data['id_level']=='4'){ //PerusahaanW
-                    $this->session->set_userdata('role',$data['id_level']);
+                    
+                    if ($data['is_active'] == '1') {
+                        $this->session->set_userdata('role',$data['id_level']);
                     $this->session->set_userdata('ses_email',$data['email']);
                     $this->session->set_userdata('namalv',$data['nama_level']);
                     $this->session->set_userdata('status',$data['is_active']);
                     $this->session->set_userdata('id_users',$data['id_users']);
                     $this->session->set_userdata('tanggal',$data['tanggal']);
                     $this->session->set_userdata('id_perusahaan',$data['id_perusahaan']);
-                    if ($data['is_active'] == '1') {
                         $this->session->set_flashdata('log', 'berhasil');
                         redirect('c_perusahaan/index');
                     }else{
-                         $this->session->set_flashdata('alert','<div class="alert alert-danger">Akun anda belum aktif, Silakan verifikasi akun anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
+                         $this->session->set_flashdata('alert','<div class="alert alert-danger">Anda terdaftar sebagai perusahaan. Silakan hubungi admin untuk verifikasi akun!<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button></div>');
                         redirect('c_login/login');  
                     }
                 }        

@@ -150,6 +150,7 @@ class M_member extends CI_Model {
         $this->db->join('lowongan', 'lowongan.id_lowongan = pelamar.id_lowongan', 'left');
         $this->db->join('perusahaan', 'perusahaan.id_perusahaan = lowongan.id_perusahaan', 'left');
         $this->db->where('member.id_users', $id_user);
+        $this->db->order_by('tgl_apply', 'desc');
 		return $this->db->get('pelamar')->result();
     }
 

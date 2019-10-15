@@ -11,7 +11,7 @@ class C_perusahaan extends CI_Controller
         $this->load->model('M_perusahaan', 'mp');
         $this->load->model('M_wilayah', 'wil');
         $this->load->library('form_validation');
-
+ 
         //cek login
         if($this->session->userdata('role') != '4'){
             redirect('c_login/login');            
@@ -45,11 +45,10 @@ class C_perusahaan extends CI_Controller
     public function cek_data_profil()
     {
         $row    = $this->mp->get_perusahaan();
-        if(!$row){
+        if($row->id_perusahaan == NULL){
             $this->session->set_flashdata('notif', '<div class="alert alert-danger">Silakan isi data perusahaan Anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
-            redirect(site_url('c_perusahaan/profil'));
-        }
-        if ($row->deskripsi == NULL) {
+            redirect(site_url('c_perusahaan/profil_input'));
+        }elseif ($row->deskripsi == NULL) {
             $this->session->set_flashdata('notif', '<div class="alert alert-danger">Silakan lengkapi data perusahaan Anda!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button></div>');
             redirect(site_url('c_perusahaan/profil_edit'));
         }
@@ -94,7 +93,6 @@ class C_perusahaan extends CI_Controller
 
     public function profil_input()
     {
-        $this->cek_data_profil();
         $skala = array('','Mikro','Kecil','Menengah','Besar');
         $pemilikan = array('','Perusahaan perorangan (PO)','Firma (Fa)','Perseroan Komanditer (CV)','Perseroan Terbatas (PT)','Perseroan Terbatas Negara (Persero)','Perusahaan Daerah (PD)','Perusahaan Negara Umum (Perum)','Perusahaan Negara Jawatan (Perjan)','Koperasi','Yayasan');
         $data = array(
@@ -197,11 +195,11 @@ class C_perusahaan extends CI_Controller
             }
 
             $alamat_data = array(
-                'alamat' => ucwords($this->input->post('alamat')),
-                'kelurahan' => ucwords($this->wil->get_kel_nama($id = $this->input->post('kelurahan'))),
-                'kecamatan' => ucwords($this->wil->get_kec_nama($id = $this->input->post('kecamatan'))),
-                'kota' => ucwords($this->wil->get_kota_nama($id = $this->input->post('kota'))),
-                'provinsi' => ucwords($this->wil->get_prov_nama($id = $this->input->post('provinsi'))),
+                'alamat' => $this->input->post('alamat'),
+                'kelurahan' => $this->wil->get_kel_nama($this->input->post('kelurahan')),
+                'kecamatan' => $this->wil->get_kec_nama($this->input->post('kecamatan')),
+                'kota' => $this->wil->get_kota_nama($this->input->post('kota')),
+                'provinsi' => $this->wil->get_prov_nama($this->input->post('provinsi')),
             );
 
             $alamat = json_encode($alamat_data);
@@ -234,7 +232,9 @@ class C_perusahaan extends CI_Controller
         $alamat_data = json_decode($row->alamat_perusahaan);
         $skala_data = array('','Mikro','Kecil','Menengah','Besar');
         $pemilikan_data = array('','Perusahaan perorangan (PO)','Firma (Fa)','Perseroan Komanditer (CV)','Perseroan Terbatas (PT)','Perseroan Terbatas Negara (Persero)','Perusahaan Daerah (PD)','Perusahaan Negara Umum (Perum)','Perusahaan Negara Jawatan (Perjan)','Koperasi','Yayasan');
-        $kota = strtoupper($alamat_data->kota);
+        $kota = $alamat_data->kota;
+        $kec = $alamat_data->kecamatan;
+        $kel = $alamat_data->kelurahan;
         $data = array(
                 'id_perusahaan' => $row->id_perusahaan,
                 'id_users' => $row->id_users,
@@ -244,8 +244,10 @@ class C_perusahaan extends CI_Controller
                 // 'kecamatan' => $alamat_data->kecamatan,
                 // 'kota' => $alamat_data->kota,
                 'provinsi' => $this->wil->get_provinsi(),
-                'kota' => $this->wil->get_kota_id($kota),
-                'provinsi_data' => strtoupper($alamat_data->provinsi),
+                'idkota' => $this->wil->get_kota_id($kota),
+                'idkec'  => $this->wil->get_kec_id($kec),
+                'idkel'  => $this->wil->get_kel_id($kel),
+                'provinsi_data' => $alamat_data->provinsi,
                 'kode_pos' => $row->kode_pos,
                 'skala_data' => $skala_data,
                 'skala' => $row->skala,
@@ -379,11 +381,11 @@ class C_perusahaan extends CI_Controller
 
 
             $alamat_data = array(
-                'alamat' => ucwords($this->input->post('alamat')),
-                'kelurahan' => ucwords($this->wil->get_kel_nama($id = $this->input->post('kelurahan'))),
-                'kecamatan' => ucwords($this->wil->get_kec_nama($id = $this->input->post('kecamatan'))),
-                'kota' => ucwords($this->wil->get_kota_nama($id = $this->input->post('kota'))),
-                'provinsi' => ucwords($this->wil->get_prov_nama($id = $this->input->post('provinsi'))),
+                'alamat' => $this->input->post('alamat'),
+                'kelurahan' => $this->wil->get_kel_nama($id = $this->input->post('kelurahan')),
+                'kecamatan' => $this->wil->get_kec_nama($id = $this->input->post('kecamatan')),
+                'kota' => $this->wil->get_kota_nama($id = $this->input->post('kota')),
+                'provinsi' => $this->wil->get_prov_nama($id = $this->input->post('provinsi')),
             );
 
             $alamat = json_encode($alamat_data);
@@ -728,6 +730,7 @@ class C_perusahaan extends CI_Controller
             'jns_kontrak' => $this->input->post('jns_kontrak'),
             'gaji' => $this->input->post('gaji'),
             'kategori_loker' => $this->input->post('kategori'),
+            'thn_pengalaman' => $this->input->post('pengalaman'),
             'lokasi_kerja' => ucwords($lokasi),
             'batas_kuota' => $this->input->post('batas_kuota'),
             'tgl_tutup' => $this->input->post('tgl_tutup'),
@@ -757,6 +760,7 @@ class C_perusahaan extends CI_Controller
             'gaji' => $row->gaji,
             'kategori' => $this->mp->get_bidang(),
             'kategori_data' => $row->kategori_loker,
+            'pengalaman' => $row->thn_pengalaman,
             'lokasi' => $this->wil->get_kab(),
             'lokasi_data' => $row->lokasi_kerja,
             'batas_kuota' => $row->batas_kuota,
@@ -787,7 +791,8 @@ class C_perusahaan extends CI_Controller
             'jns_kontrak' => $this->input->post('jns_kontrak'),
             'gaji' => $this->input->post('gaji'),
             'kategori_loker' => $this->input->post('kategori'),
-            'lokasi' => ucwords($lokasi),
+            'thn_pengalaman' => $this->input->post('pengalaman'),
+            'lokasi_kerja' => ucwords($lokasi),
             'batas_kuota' => $this->input->post('batas_kuota'),
             'tgl_tutup' => $this->input->post('tgl_tutup'),
             'ket_lowongan' => $this->input->post('deskripsi')
